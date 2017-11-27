@@ -5,15 +5,17 @@
  */
 package projeto1718;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Bruna
  */
-public class Pessoa {
+public class Pessoa implements Serializable {
     protected String nome;
     protected String perfil;
     protected String password;
-    // protected ArrayList<Local> listaLocais;
+    // protected ArrayList<Local> listaLocaisSelecionados;
     
     public Pessoa() {}
 
@@ -54,8 +56,8 @@ public class Pessoa {
     
     /*
     public boolean adicionaLocal(Local l) {
-        if(this.getListaLocais().size() < 5){
-            this.getListaLocais().add(l);
+        if(this.getListaLocaisSelecionados().size() < 5){
+            this.getListaLocaisSelecionados().add(l);
         }
         else return false;
     }
