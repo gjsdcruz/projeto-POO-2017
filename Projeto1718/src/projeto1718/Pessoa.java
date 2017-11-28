@@ -15,7 +15,7 @@ public class Pessoa implements Serializable {
     protected String nome;
     protected String perfil;
     protected String password;
-    // protected ArrayList<Local> listaLocaisSelecionados;
+    //protected ArrayList<Local> listaLocaisSelecionados;
     
     public Pessoa() {}
 
@@ -23,6 +23,7 @@ public class Pessoa implements Serializable {
         this.nome = nome;
         this.perfil = perfil;
         this.password = password;
+        //listaLocaisSelecionados = new ArrayList<Local>();
     }
 
     public String getNome() {
@@ -48,7 +49,7 @@ public class Pessoa implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     @Override
     public String toString() {
         return "Nome: " + nome + "\nPerfil: " + perfil + "\nPassword: " + password;
@@ -56,8 +57,8 @@ public class Pessoa implements Serializable {
     
     /*
     public boolean adicionaLocal(Local l) {
-        if(this.getListaLocaisSelecionados().size() < 5){
-            this.getListaLocaisSelecionados().add(l);
+        if(listaLocaisSelecionados.size() < 5){
+            listaLocaisSelecionados.add(l);
         }
         else return false;
     }

@@ -1,0 +1,50 @@
+Ana Sousa
+Estudante
+Engenharia Informatica
+Cultural
+password1
+Tiago Gomes
+Estudante
+Engenharia Informatica
+Boemio
+password2
+Diogo Ferreira
+Estudante
+Engenharia Informatica
+Desportivo
+password3
+Sara Tavares
+Estudante
+Engenharia Informatica
+Poupadinho
+password4
+Rui Cabral
+Estudante
+Engenharia Informatica
+Boemio
+password5
+Susana Martins
+Professor
+Catedratico
+Cultural
+password6
+Carlos Silva
+Professor
+Associado
+Desportivo
+password7
+Pedro Simoes
+Professor
+Auxiliar
+Boemio
+password8
+Beatriz Rodrigues
+Funcionario
+Tempo integral
+Poupadinho
+password9
+Laura Goncalves
+Funcionario
+Tempo parcial
+Cultural
+password10
