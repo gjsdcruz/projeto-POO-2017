@@ -6,6 +6,7 @@
 package projeto1718;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Pessoa implements Serializable {
     protected String nome;
     protected String perfil;
     protected String password;
-    //protected ArrayList<Local> listaLocaisSelecionados;
+    protected ArrayList<Local> listaLocaisSelecionados;
     
     public Pessoa() {}
 
@@ -23,7 +24,7 @@ public class Pessoa implements Serializable {
         this.nome = nome;
         this.perfil = perfil;
         this.password = password;
-        //listaLocaisSelecionados = new ArrayList<Local>();
+        this.listaLocaisSelecionados = new ArrayList<Local>();
     }
 
     public String getNome() {
@@ -49,18 +50,25 @@ public class Pessoa implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public ArrayList<Local> getListaLocaisSelecionados() {
+        return listaLocaisSelecionados;
+    }
+
+    public void setListaLocaisSelecionados(ArrayList<Local> listaLocaisSelecionados) {
+        this.listaLocaisSelecionados = listaLocaisSelecionados;
+    }
     
     @Override
     public String toString() {
         return "Nome: " + nome + "\nPerfil: " + perfil + "\nPassword: " + password;
     }
     
-    /*
     public boolean adicionaLocal(Local l) {
         if(listaLocaisSelecionados.size() < 5){
             listaLocaisSelecionados.add(l);
+            return true;
         }
         else return false;
     }
-    */
 }

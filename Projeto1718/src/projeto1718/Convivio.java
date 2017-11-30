@@ -13,15 +13,16 @@ import java.util.ArrayList;
  */
 public class Convivio {
     protected ArrayList<Pessoa> listaInscritos;
-    //protected ArrayList<Local> listaLocaisAVisitar;
+    protected ArrayList<Local> listaLocaisAVisitar;
     protected double receitaPrevista;
     protected Data data;
     
     public Convivio() {}
 
-    public Convivio(ArrayList<Pessoa> listaInscritos, double receitaPrevista, Data data) {
-        this.listaInscritos = listaInscritos;
-        this.receitaPrevista = receitaPrevista;
+    public Convivio(ArrayList<Local> listaLocaisAVisitar, Data data) {
+        this.listaInscritos = new ArrayList<>();
+        this.listaLocaisAVisitar = listaLocaisAVisitar;
+        this.receitaPrevista = 0;
         this.data = data;
     }
 
@@ -32,7 +33,15 @@ public class Convivio {
     public void setListaInscritos(ArrayList<Pessoa> listaInscritos) {
         this.listaInscritos = listaInscritos;
     }
-
+    
+    public ArrayList<Local> getListaLocaisAVisitar() {
+        return listaLocaisAVisitar;
+    }
+    
+    public void setListaLocaisAVisitar(ArrayList<Local> listaLocaisAVisitar) {
+        this.listaLocaisAVisitar = listaLocaisAVisitar;
+    }
+    
     public double getReceitaPrevista() {
         return receitaPrevista;
     }
@@ -52,7 +61,7 @@ public class Convivio {
     public boolean inscrevePessoa(Pessoa p) {
         for(Pessoa pe : this.getListaInscritos()){
             if(pe.getNome().equalsIgnoreCase(p.getNome())){
-                System.out.println("Erro: esta pessoa já se encontra inscrita neste evento");
+                System.out.println("Erro: esta pessoa já se encontra inscrita neste convívio");
                 return false;
             }
         }
@@ -62,17 +71,15 @@ public class Convivio {
     
     public void listaLocaisAVisitar() {
         System.out.println("===== LOCAIS A VISITAR =====");
-        /*
         for(Local l : this.getListaLocaisAVisitar()){
             System.out.println(l);
         }
-        */
         System.out.println("============================");
     }
     
     /*
-    public double calculaReceita() {
-        
+    public double calculaReceitaTotal() {
+        // FALTA
     }
     */
 }

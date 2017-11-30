@@ -1,0 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package projeto1718;
+
+/**
+ *
+ * @author Bruna
+ */
+public class Local {
+    protected GPS coordenadas;
+    
+    public Local() {}
+
+    public Local(GPS coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
+    public GPS getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(GPS coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
+    @Override
+    public String toString() {
+        return "Local {" + coordenadas + '}';
+    }
+}

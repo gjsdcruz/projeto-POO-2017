@@ -15,38 +15,55 @@ import java.util.logging.Logger;
  * @author Bruna
  */
 public class Gestao {
-    //protected ArrayList<Local> listaLocais;
+    protected ArrayList<Local> listaLocais;
     protected ArrayList<Pessoa> listaPessoas;
     
     public Gestao() {
-        //listaLocais = carregaLocaisTxt(); //carregaLocais();
+        listaLocais = carregaLocaisTxt(); //carregaLocais();
         listaPessoas = carregaPessoasTxt(); //carregaPessoas();
         
         menu();
     }
     
-    /*
     public ArrayList<Local> carregaLocaisTxt() {
         ArrayList<Local> listaL = new ArrayList<>();
         
         try{
             BufferedReader br = new BufferedReader(new FileReader("ListaLocais.txt"));
-            String nome, tipo, atributoExtra, perfil, password;
+            String lat, lon, tipo, atributoExtra1, atributoExtra2;
+            String desportos[];
+            ArrayList<String> desportosFinal = new ArrayList<>();
 
-            for(int i=0; (nome = br.readLine())!=null; i=i++){
-                tipo = br.readLine();
-                atributoExtra = br.readLine();
-                perfil = br.readLine();
-                password = br.readLine();
+            for(int i=0; (tipo = br.readLine())!=null; i=i++){
+                lat = br.readLine();
+                lon = br.readLine();
+                atributoExtra1 = br.readLine();
+                atributoExtra2 = br.readLine();
 
-                if(tipo.equalsIgnoreCase("Professor"))
-                    listaP.add(new Professor(nome, perfil, password, atributoExtra));
-                else if(tipo.equalsIgnoreCase("Funcionario"))
-                    listaP.add(new Funcionario(nome, perfil, password, atributoExtra));
-                else if(tipo.equalsIgnoreCase("Estudante"))
-                    listaP.add(new Estudante(nome, perfil, password, atributoExtra));
+                if(tipo.equalsIgnoreCase("Area desportiva")){
+                    try{
+                        desportos = atributoExtra1.split(",");
+                        ArrayList<String> listaDesportos = new ArrayList<>(desportos.length);
+                        for(int j=0; j<desportos.length; j++){
+                            listaDesportos.add(desportos[j]);
+                        }
+                        desportosFinal = listaDesportos;
+                    }
+                    catch(Exception e) {
+                        ArrayList<String> listaDesportos = new ArrayList<>(1);
+                        listaDesportos.add(atributoExtra1);
+                        desportosFinal = listaDesportos;
+                    }
+                    listaL.add(new AreaDesportiva(new GPS(Double.valueOf(lat), Double.valueOf(lon)), desportosFinal));
+                }
+                else if(tipo.equalsIgnoreCase("Jardim"))
+                    listaL.add(new Jardim(new GPS(Double.valueOf(lat), Double.valueOf(lon)), Double.valueOf(atributoExtra1)));
+                else if(tipo.equalsIgnoreCase("Exposicao"))
+                    listaL.add(new Exposicao(new GPS(Double.valueOf(lat), Double.valueOf(lon)), atributoExtra1, Double.valueOf(atributoExtra2)));
+                else if(tipo.equalsIgnoreCase("Bar"))
+                    listaL.add(new Bar(new GPS(Double.valueOf(lat), Double.valueOf(lon)), Integer.valueOf(atributoExtra1), Double.valueOf(atributoExtra2)));
             }
-
+            
             br.close();
             return listaL;
         } catch (IOException ex) {
@@ -55,7 +72,6 @@ public class Gestao {
         
         return listaL;
     }
-    */
     
     public ArrayList<Pessoa> carregaPessoasTxt() {
         ArrayList<Pessoa> listaP = new ArrayList<>();
@@ -87,9 +103,8 @@ public class Gestao {
         return listaP;
     }
         
-    /*
     public ArrayList<Local> carregaLocais() {
-        ArrayList<Pessoa> listaL = new ArrayList<>();
+        ArrayList<Local> listaL = new ArrayList<>();
         
         try {
             FileInputStream fis = new FileInputStream("ListaLocais.ser");
@@ -104,7 +119,6 @@ public class Gestao {
         
         return listaL;
     }
-    */
     
     public ArrayList<Pessoa> carregaPessoas() {
         ArrayList<Pessoa> listaP = new ArrayList<>();
@@ -123,7 +137,6 @@ public class Gestao {
         return listaP;
     }
     
-    /*
     public void escreveListaLocais(ArrayList<Local> locais) {
         try {
             FileOutputStream fos = new FileOutputStream("ListaLocais.ser");
@@ -134,7 +147,6 @@ public class Gestao {
             System.out.println("Erro Local");
         }
     }
-    */
     
     public void escreveListaPessoas(ArrayList<Pessoa> pessoas) {
         try {
@@ -148,7 +160,7 @@ public class Gestao {
     }
     
     public void escreveFicheiros() {
-        //escreveListaLocais(this.listaLocais);
+        escreveListaLocais(this.listaLocais);
         escreveListaPessoas(this.listaPessoas);
     }
     
