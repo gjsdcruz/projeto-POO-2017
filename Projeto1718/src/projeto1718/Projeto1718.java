@@ -5,6 +5,8 @@
  */
 package projeto1718;
 
+import java.io.IOException;
+
 /**
  *
  * @author Bruna
@@ -14,7 +16,7 @@ public class Projeto1718 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Gestao gereListas = new Gestao();
         
         // TESTE PARA VER SE ESTÁ A LER BEM DO FICHEIRO ListaPessoas.txt

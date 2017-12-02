@@ -5,11 +5,13 @@
  */
 package projeto1718;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Bruna
  */
-public class GPS {
+public class GPS implements Serializable {
     private double latitude;
     private double longitude;
     

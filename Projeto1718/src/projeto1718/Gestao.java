@@ -18,92 +18,82 @@ public class Gestao {
     protected ArrayList<Local> listaLocais;
     protected ArrayList<Pessoa> listaPessoas;
     
-    public Gestao() {
-        listaLocais = carregaLocaisTxt(); //carregaLocais();
-        listaPessoas = carregaPessoasTxt(); //carregaPessoas();
+    public Gestao() throws IOException {
+        listaLocais = /*carregaLocaisTxt();*/ carregaLocais();
+        listaPessoas = /*carregaPessoasTxt();*/ carregaPessoas();
         
         menu();
     }
     
-    public ArrayList<Local> carregaLocaisTxt() {
+    public ArrayList<Local> carregaLocaisTxt() throws IOException {
         ArrayList<Local> listaL = new ArrayList<>();
         
-        try{
-            BufferedReader br = new BufferedReader(new FileReader("ListaLocais.txt"));
-            String lat, lon, tipo, atributoExtra1, atributoExtra2;
-            String desportos[];
-            ArrayList<String> desportosFinal = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("ListaLocais.txt"));
+        String lat, lon, tipo, atributoExtra1, atributoExtra2;
+        String desportos[];
+        ArrayList<String> desportosFinal = new ArrayList<>();
 
-            for(int i=0; (tipo = br.readLine())!=null; i=i++){
-                lat = br.readLine();
-                lon = br.readLine();
-                atributoExtra1 = br.readLine();
-                atributoExtra2 = br.readLine();
+        for(int i=0; (tipo = br.readLine())!=null; i=i++){
+            lat = br.readLine();
+            lon = br.readLine();
+            atributoExtra1 = br.readLine();
+            atributoExtra2 = br.readLine();
 
-                if(tipo.equalsIgnoreCase("Area desportiva")){
-                    try{
-                        desportos = atributoExtra1.split(",");
-                        ArrayList<String> listaDesportos = new ArrayList<>(desportos.length);
-                        for(int j=0; j<desportos.length; j++){
-                            listaDesportos.add(desportos[j]);
-                        }
-                        desportosFinal = listaDesportos;
+            if(tipo.equalsIgnoreCase("Area desportiva")){
+                try{
+                    desportos = atributoExtra1.split(",");
+                    ArrayList<String> listaDesportos = new ArrayList<>(desportos.length);
+                    for(int j=0; j<desportos.length; j++){
+                        listaDesportos.add(desportos[j]);
                     }
-                    catch(Exception e) {
-                        ArrayList<String> listaDesportos = new ArrayList<>(1);
-                        listaDesportos.add(atributoExtra1);
-                        desportosFinal = listaDesportos;
-                    }
-                    listaL.add(new AreaDesportiva(new GPS(Double.valueOf(lat), Double.valueOf(lon)), desportosFinal));
+                    desportosFinal = listaDesportos;
                 }
-                else if(tipo.equalsIgnoreCase("Jardim"))
-                    listaL.add(new Jardim(new GPS(Double.valueOf(lat), Double.valueOf(lon)), Double.valueOf(atributoExtra1)));
-                else if(tipo.equalsIgnoreCase("Exposicao"))
-                    listaL.add(new Exposicao(new GPS(Double.valueOf(lat), Double.valueOf(lon)), atributoExtra1, Double.valueOf(atributoExtra2)));
-                else if(tipo.equalsIgnoreCase("Bar"))
-                    listaL.add(new Bar(new GPS(Double.valueOf(lat), Double.valueOf(lon)), Integer.valueOf(atributoExtra1), Double.valueOf(atributoExtra2)));
+                catch(Exception e) {
+                    ArrayList<String> listaDesportos = new ArrayList<>(1);
+                    listaDesportos.add(atributoExtra1);
+                    desportosFinal = listaDesportos;
+                }
+                listaL.add(new AreaDesportiva(new GPS(Double.valueOf(lat), Double.valueOf(lon)), desportosFinal));
             }
-            
-            br.close();
-            return listaL;
-        } catch (IOException ex) {
-            Logger.getLogger(Gestao.class.getName()).log(Level.SEVERE, null, ex);
+            else if(tipo.equalsIgnoreCase("Jardim"))
+                listaL.add(new Jardim(new GPS(Double.valueOf(lat), Double.valueOf(lon)), Double.valueOf(atributoExtra1)));
+            else if(tipo.equalsIgnoreCase("Exposicao"))
+                listaL.add(new Exposicao(new GPS(Double.valueOf(lat), Double.valueOf(lon)), atributoExtra1, Double.valueOf(atributoExtra2)));
+            else if(tipo.equalsIgnoreCase("Bar"))
+                listaL.add(new Bar(new GPS(Double.valueOf(lat), Double.valueOf(lon)), Integer.valueOf(atributoExtra1), Double.valueOf(atributoExtra2)));
+            else {}
         }
-        
+
+        br.close();
         return listaL;
     }
     
-    public ArrayList<Pessoa> carregaPessoasTxt() {
+    public ArrayList<Pessoa> carregaPessoasTxt() throws IOException {
         ArrayList<Pessoa> listaP = new ArrayList<>();
         
-        try{
-            BufferedReader br = new BufferedReader(new FileReader("ListaPessoas.txt"));
-            String nome, tipo, atributoExtra, perfil, password;
+        BufferedReader br = new BufferedReader(new FileReader("ListaPessoas.txt"));
+        String nome, tipo, atributoExtra, perfil, password;
 
-            for(int i=0; (nome = br.readLine())!=null; i=i++){
-                tipo = br.readLine();
-                atributoExtra = br.readLine();
-                perfil = br.readLine();
-                password = br.readLine();
+        for(int i=0; (nome = br.readLine())!=null; i=i++){
+            tipo = br.readLine();
+            atributoExtra = br.readLine();
+            perfil = br.readLine();
+            password = br.readLine();
 
-                if(tipo.equalsIgnoreCase("Professor"))
-                    listaP.add(new Professor(nome, perfil, password, atributoExtra));
-                else if(tipo.equalsIgnoreCase("Funcionario"))
-                    listaP.add(new Funcionario(nome, perfil, password, atributoExtra));
-                else if(tipo.equalsIgnoreCase("Estudante"))
-                    listaP.add(new Estudante(nome, perfil, password, atributoExtra));
-            }
-
-            br.close();
-            return listaP;
-        } catch (IOException ex) {
-            Logger.getLogger(Gestao.class.getName()).log(Level.SEVERE, null, ex);
+            if(tipo.equalsIgnoreCase("Professor"))
+                listaP.add(new Professor(nome, perfil, password, atributoExtra));
+            else if(tipo.equalsIgnoreCase("Funcionario"))
+                listaP.add(new Funcionario(nome, perfil, password, atributoExtra));
+            else if(tipo.equalsIgnoreCase("Estudante"))
+                listaP.add(new Estudante(nome, perfil, password, atributoExtra));
+            else {}
         }
-        
+
+        br.close();
         return listaP;
     }
         
-    public ArrayList<Local> carregaLocais() {
+    public ArrayList<Local> carregaLocais() throws IOException {
         ArrayList<Local> listaL = new ArrayList<>();
         
         try {
@@ -120,7 +110,7 @@ public class Gestao {
         return listaL;
     }
     
-    public ArrayList<Pessoa> carregaPessoas() {
+    public ArrayList<Pessoa> carregaPessoas() throws IOException {
         ArrayList<Pessoa> listaP = new ArrayList<>();
         
         try {
@@ -137,7 +127,7 @@ public class Gestao {
         return listaP;
     }
     
-    public void escreveListaLocais(ArrayList<Local> locais) {
+    public void escreveListaLocais(ArrayList<Local> locais) throws IOException {
         try {
             FileOutputStream fos = new FileOutputStream("ListaLocais.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -148,23 +138,23 @@ public class Gestao {
         }
     }
     
-    public void escreveListaPessoas(ArrayList<Pessoa> pessoas) {
+    public void escreveListaPessoas(ArrayList<Pessoa> pessoas) throws IOException {
         try {
             FileOutputStream fos = new FileOutputStream("ListaPessoas.ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(pessoas);
             oos.close();
         } catch (Exception e) {
-            System.out.println("Erro Local");
+            System.out.println("Erro Pessoa");
         }
     }
     
-    public void escreveFicheiros() {
-        escreveListaLocais(this.listaLocais);
-        escreveListaPessoas(this.listaPessoas);
+    public void escreveFicheiros() throws IOException {
+        escreveListaLocais(listaLocais);
+        escreveListaPessoas(listaPessoas);
     }
     
-     public void menu() {
-         
+     public void menu() throws IOException {
+        escreveFicheiros();
      }
 }

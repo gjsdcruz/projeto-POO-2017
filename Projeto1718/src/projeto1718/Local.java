@@ -5,11 +5,13 @@
  */
 package projeto1718;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Bruna
  */
-public class Local {
+public class Local implements Serializable {
     protected GPS coordenadas;
     
     public Local() {}
