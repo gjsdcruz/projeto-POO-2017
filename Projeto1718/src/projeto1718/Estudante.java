@@ -16,6 +16,7 @@ public class Estudante extends Pessoa {
 
     public Estudante(String nome, String perfil, String password, String curso) {
         super(nome, perfil, password);
+        super.setDesconto(true);
         this.curso = curso;
     }
 

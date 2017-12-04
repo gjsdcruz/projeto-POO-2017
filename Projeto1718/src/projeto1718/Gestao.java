@@ -15,11 +15,12 @@ import java.util.*;
 public class Gestao {
     protected ArrayList<Local> listaLocais;
     protected ArrayList<Pessoa> listaPessoas;
+    protected Convivio convivioPOO;
     
     public Gestao() throws IOException {
         listaLocais = /*carregaLocaisTxt();*/ carregaLocais();
         listaPessoas = /*carregaPessoasTxt();*/ carregaPessoas();
-        
+        convivioPOO = new Convivio(listaLocais, new Data(22,12,2017));
         menu();
     }
     
@@ -152,7 +153,113 @@ public class Gestao {
         escreveListaPessoas(listaPessoas);
     }
     
-     public void menu() throws IOException {
+    public void menu() throws IOException {
+        int op = 0;
+        while(op != 7){
+            op = 0;
+            
+            System.out.println("========================== MENU ==========================");
+            System.out.println("1 - Inscrição no convívio");
+            System.out.println("2 - Apresentação dos locais a visitar");
+            System.out.println("3 - Seleção dos locais a visitar");
+            System.out.println("4 - Seriação dos locais a visitar");
+            System.out.println("5 - Visualização das 'guestlist'");
+            System.out.println("6 - Contabilização das receitas dos locais visitados");
+            System.out.println("7 - Sair");
+            System.out.println("==========================================================");
+            
+            while(op < 1 || op > 7){
+                System.out.print("Introduza a opção desejada: ");
+                Scanner sc = new Scanner(System.in);
+                try{
+                    op = sc.nextInt();
+                }
+                catch(InputMismatchException e){
+                    op = 0;
+                    System.out.println("Erro! Deve introduzir um inteiro de 1 a 7 de acordo com a opção desejada.");
+                }
+                if(op < 1 || op > 11)
+                    System.out.println("Erro! Deve introduzir um inteiro de 1 a 7 de acordo com a opção desejada.");
+            }
+            
+            switch(op){
+                case 1:
+                    chamaInscricaoConvivio(); break;
+                case 2:
+                    chamaApresentacaoLocais(); break;
+                case 3:
+                    chamaSelecaoLocais(); break;
+                case 4:
+                    chamaSeriacaoLocais(); break;
+                case 5:
+                    chamaVisualizacaoGuestlist(); break;
+                case 6:
+                    chamaContabilizacaoReceitas(); break;
+                case 7:
+                    chamaSair(); break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void chamaInscricaoConvivio() {
+        inscricaoConvivio(this.convivioPOO, this.listaPessoas);
+    }
+
+    public void chamaApresentacaoLocais() {
+        apresentacaoLocais(this.convivioPOO);
+    }
+
+    public void chamaSelecaoLocais() {
+        
+    }
+
+    public void chamaSeriacaoLocais() {
+        
+    }
+
+    public void chamaVisualizacaoGuestlist() {
+        
+    }
+
+    public void chamaContabilizacaoReceitas() {
+        
+    }
+
+    public void chamaSair() throws IOException {
         escreveFicheiros();
-     }
+        System.exit(0);
+    }
+
+    public boolean inscricaoConvivio(Convivio c, ArrayList<Pessoa> pessoas) {
+        String nome, password;
+        
+        System.out.println("Nome: ");
+        Scanner sc = new Scanner(System.in);
+        nome = sc.nextLine();
+        System.out.println("Password: ");
+        password = sc.nextLine();
+        
+        for(Pessoa p : pessoas){
+            if(nome.equalsIgnoreCase(p.getNome()) && password.equals(p.getPassword())){
+                if(c.inscrevePessoa(p)){
+                    System.out.println("Foi inscrito com sucesso");
+                    return true;
+                } else return false;
+            }
+        }
+        
+        System.out.println("Não existe ninguém com esse nome / Password errada");
+        return false;
+    }
+
+    private void apresentacaoLocais(Convivio c) {
+        int i = 0;
+        for(Local l : c.getListaLocaisAVisitar()){
+            System.out.println(l);
+            System.out.println("Inscritos: " + c.getMapaInscritos().get(i));
+            i++;
+        }
+    }
 }

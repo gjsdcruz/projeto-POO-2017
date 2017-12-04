@@ -6,6 +6,7 @@
 package projeto1718;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Convivio {
     protected ArrayList<Local> listaLocaisAVisitar;
     protected double receitaPrevista;
     protected Data data;
+    protected HashMap<Integer,Integer> mapaInscritos;
     
     public Convivio() {}
 
@@ -24,6 +26,13 @@ public class Convivio {
         this.listaLocaisAVisitar = listaLocaisAVisitar;
         this.receitaPrevista = 0;
         this.data = data;
+        this.mapaInscritos = new HashMap<>();
+        
+        int i = 0;
+        for(Local l : listaLocaisAVisitar){
+            mapaInscritos.put(i, 0);
+            i++;
+        }
     }
 
     public ArrayList<Pessoa> getListaInscritos() {
@@ -56,6 +65,14 @@ public class Convivio {
 
     public void setData(Data data) {
         this.data = data;
+    }
+
+    public HashMap<Integer, Integer> getMapaInscritos() {
+        return mapaInscritos;
+    }
+
+    public void setMapaInscritos(HashMap<Integer, Integer> mapaInscritos) {
+        this.mapaInscritos = mapaInscritos;
     }
     
     public boolean inscrevePessoa(Pessoa p) {

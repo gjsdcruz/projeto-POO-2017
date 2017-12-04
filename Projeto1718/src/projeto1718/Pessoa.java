@@ -16,6 +16,7 @@ public class Pessoa implements Serializable {
     protected String nome;
     protected String perfil;
     protected String password;
+    protected boolean desconto;
     protected ArrayList<Local> listaLocaisSelecionados;
     
     public Pessoa() {}
@@ -24,6 +25,7 @@ public class Pessoa implements Serializable {
         this.nome = nome;
         this.perfil = perfil;
         this.password = password;
+        this.desconto = false;
         this.listaLocaisSelecionados = new ArrayList<Local>();
     }
 
@@ -57,6 +59,14 @@ public class Pessoa implements Serializable {
 
     public void setListaLocaisSelecionados(ArrayList<Local> listaLocaisSelecionados) {
         this.listaLocaisSelecionados = listaLocaisSelecionados;
+    }
+
+    public boolean isDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(boolean desconto) {
+        this.desconto = desconto;
     }
     
     @Override
