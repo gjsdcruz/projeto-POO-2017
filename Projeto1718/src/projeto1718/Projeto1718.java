@@ -29,7 +29,7 @@ public class Projeto1718 {
         System.out.println("===============================");
         
         // TESTE PARA VER SE ESTÁ A LER BEM DO FICHEIRO ListaLocais.txt
-        System.out.println("======= LISTA DE LOCAIS =======");
+        System.out.println("\n======= LISTA DE LOCAIS =======");
         int j = 0;
         while(j < gereListas.listaLocais.size()){
             System.out.println(gereListas.listaLocais.get(j) + "\n");
