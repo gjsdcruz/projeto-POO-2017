@@ -28,6 +28,15 @@ public class Professor extends Pessoa {
     }
 
     @Override
+    public boolean isEstudante() {return false;}
+    
+    @Override
+    public boolean isFuncionario() {return false;}
+    
+    @Override
+    public boolean isProfessor() {return true;}
+    
+    @Override
     public String toString() {
         return super.toString() + "\nCategoria: " + categoria;
     }

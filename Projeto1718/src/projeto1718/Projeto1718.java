@@ -19,7 +19,10 @@ public class Projeto1718 {
     public static void main(String[] args) throws IOException {
         Gestao gereListas = new Gestao();
         
-        // TESTE PARA VER SE ESTÁ A LER BEM DO FICHEIRO ListaPessoas.txt
+        /*
+        // TESTES PARA VER SE ESTÁ A LER BEM DO FICHEIRO Convivio.ser
+        System.out.println(gereListas.convivioPOO);
+        // TESTE PARA VER SE ESTÁ A LER BEM DO FICHEIRO ListaPessoas.txt OU ListaPessoas.ser
         System.out.println("======= LISTA DE PESSOAS =======");
         int i = 0;
         while(i < gereListas.listaPessoas.size()){
@@ -28,7 +31,7 @@ public class Projeto1718 {
         }
         System.out.println("===============================");
         
-        // TESTE PARA VER SE ESTÁ A LER BEM DO FICHEIRO ListaLocais.txt
+        // TESTE PARA VER SE ESTÁ A LER BEM DO FICHEIRO ListaLocais.txt OU ListaLocais.ser
         System.out.println("\n======= LISTA DE LOCAIS =======");
         int j = 0;
         while(j < gereListas.listaLocais.size()){
@@ -36,6 +39,6 @@ public class Projeto1718 {
             j++;
         }
         System.out.println("===============================");
+        */
     }
-    
 }

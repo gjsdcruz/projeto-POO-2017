@@ -38,6 +38,21 @@ public class Exposicao extends Local {
     }
 
     @Override
+    public int getLotacao() {return -1;}
+    
+    @Override
+    public boolean isAreaDesportiva() {return false;}
+    
+    @Override
+    public boolean isBar() {return false;}
+    
+    @Override
+    public boolean isExposicao() {return true;}
+    
+    @Override
+    public boolean isJardim() {return false;}
+    
+    @Override
     public String toString() {
         return super.toString() + "\nExposição {Forma artística: " + formaArtistica + ", Custo de ingresso: " + custoIngresso + "€}";
     }

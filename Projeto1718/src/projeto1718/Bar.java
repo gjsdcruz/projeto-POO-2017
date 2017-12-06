@@ -21,6 +21,7 @@ public class Bar extends Local {
         this.consumoMinimo = consumoMinimo;
     }
 
+    @Override
     public int getLotacao() {
         return lotacao;
     }
@@ -36,6 +37,18 @@ public class Bar extends Local {
     public void setConsumoMinimo(double consumoMinimo) {
         this.consumoMinimo = consumoMinimo;
     }
+    
+    @Override
+    public boolean isAreaDesportiva() {return false;}
+    
+    @Override
+    public boolean isBar() {return true;}
+    
+    @Override
+    public boolean isExposicao() {return false;}
+    
+    @Override
+    public boolean isJardim() {return false;}
 
     @Override
     public String toString() {

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Bruna
  */
-public class Local implements Serializable {
+public abstract class Local implements Serializable {
     protected GPS coordenadas;
     
     public Local() {}
@@ -27,6 +27,16 @@ public class Local implements Serializable {
     public void setCoordenadas(GPS coordenadas) {
         this.coordenadas = coordenadas;
     }
+    
+    public abstract int getLotacao();
+    
+    public abstract boolean isAreaDesportiva();
+    
+    public abstract boolean isBar();
+    
+    public abstract boolean isExposicao();
+    
+    public abstract boolean isJardim();
 
     @Override
     public String toString() {

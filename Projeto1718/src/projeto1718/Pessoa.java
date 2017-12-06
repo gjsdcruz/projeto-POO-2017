@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Bruna
  */
-public class Pessoa implements Serializable {
+public abstract class Pessoa implements Serializable {
     protected String nome;
     protected String perfil;
     protected String password;
@@ -69,16 +69,14 @@ public class Pessoa implements Serializable {
         this.desconto = desconto;
     }
     
+    public abstract boolean isEstudante();
+    
+    public abstract boolean isFuncionario();
+    
+    public abstract boolean isProfessor();
+    
     @Override
     public String toString() {
         return "Nome: " + nome + "\nPerfil: " + perfil + "\nPassword: " + password;
-    }
-    
-    public boolean adicionaLocal(Local l) {
-        if(listaLocaisSelecionados.size() < 5){
-            listaLocaisSelecionados.add(l);
-            return true;
-        }
-        else return false;
     }
 }

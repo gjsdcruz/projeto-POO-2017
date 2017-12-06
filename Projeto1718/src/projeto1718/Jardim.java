@@ -28,6 +28,21 @@ public class Jardim extends Local {
     }
 
     @Override
+    public int getLotacao() {return -1;}
+    
+    @Override
+    public boolean isAreaDesportiva() {return false;}
+    
+    @Override
+    public boolean isBar() {return false;}
+    
+    @Override
+    public boolean isExposicao() {return false;}
+    
+    @Override
+    public boolean isJardim() {return true;}
+    
+    @Override
     public String toString() {
         return super.toString() + "\nJardim {Área: " + area + " m^2}";
     }

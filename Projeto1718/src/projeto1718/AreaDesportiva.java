@@ -28,7 +28,22 @@ public class AreaDesportiva extends Local {
     public void setDesportos(ArrayList<String> desportos) {
         this.desportos = desportos;
     }
-
+    
+    @Override
+    public int getLotacao() {return -1;}
+    
+    @Override
+    public boolean isAreaDesportiva() {return true;}
+    
+    @Override
+    public boolean isBar() {return false;}
+    
+    @Override
+    public boolean isExposicao() {return false;}
+    
+    @Override
+    public boolean isJardim() {return false;}
+    
     @Override
     public String toString() {
         return super.toString() + "\nÁrea Desportiva {Desportos: " + desportos.toString() + '}';

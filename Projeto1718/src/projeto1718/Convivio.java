@@ -5,6 +5,7 @@
  */
 package projeto1718;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Bruna
  */
-public class Convivio {
+public class Convivio implements Serializable {
     protected ArrayList<Pessoa> listaInscritos;
     protected ArrayList<Local> listaLocaisAVisitar;
     protected double receitaPrevista;
@@ -26,12 +27,10 @@ public class Convivio {
         this.listaLocaisAVisitar = listaLocaisAVisitar;
         this.receitaPrevista = 0;
         this.data = data;
-        this.mapaInscritos = new HashMap<>();
+        this.mapaInscritos = new HashMap<>(this.listaLocaisAVisitar.size());
         
-        int i = 0;
-        for(Local l : listaLocaisAVisitar){
+        for(int i=0; i<this.listaLocaisAVisitar.size(); i++){
             mapaInscritos.put(i, 0);
-            i++;
         }
     }
 
@@ -74,29 +73,11 @@ public class Convivio {
     public void setMapaInscritos(HashMap<Integer, Integer> mapaInscritos) {
         this.mapaInscritos = mapaInscritos;
     }
-    
-    public boolean inscrevePessoa(Pessoa p) {
-        for(Pessoa pe : this.getListaInscritos()){
-            if(pe.getNome().equalsIgnoreCase(p.getNome())){
-                System.out.println("Erro: esta pessoa já se encontra inscrita neste convívio");
-                return false;
-            }
-        }
-        this.getListaInscritos().add(p);
-        return true;
+
+    @Override
+    public String toString() {
+        return "Convívio {\nLista de pessoas inscritas:\n" + listaInscritos + 
+                "\nLista de locais a visitar:\n" + listaLocaisAVisitar + "\nReceita prevista: " +
+                receitaPrevista + "€\nData: " + data + "\n}";
     }
-    
-    public void listaLocaisAVisitar() {
-        System.out.println("===== LOCAIS A VISITAR =====");
-        for(Local l : this.getListaLocaisAVisitar()){
-            System.out.println(l);
-        }
-        System.out.println("============================");
-    }
-    
-    /*
-    public double calculaReceitaTotal() {
-        // FALTA
-    }
-    */
 }

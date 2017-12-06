@@ -5,13 +5,14 @@
  */
 package projeto1718;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author Bruna
  */
-public class Data {
+public class Data implements Serializable {
     private int dia;
     private int mes;
     private int ano;
