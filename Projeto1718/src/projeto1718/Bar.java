@@ -39,16 +39,7 @@ public class Bar extends Local {
     }
     
     @Override
-    public boolean isAreaDesportiva() {return false;}
-    
-    @Override
     public boolean isBar() {return true;}
-    
-    @Override
-    public boolean isExposicao() {return false;}
-    
-    @Override
-    public boolean isJardim() {return false;}
 
     @Override
     public String toString() {

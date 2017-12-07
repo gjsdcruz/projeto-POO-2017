@@ -71,10 +71,6 @@ public abstract class Pessoa implements Serializable {
     
     public abstract boolean isEstudante();
     
-    public abstract boolean isFuncionario();
-    
-    public abstract boolean isProfessor();
-    
     @Override
     public String toString() {
         return "Nome: " + nome + "\nPerfil: " + perfil + "\nPassword: " + password;

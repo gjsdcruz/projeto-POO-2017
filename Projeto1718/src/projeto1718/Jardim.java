@@ -31,16 +31,7 @@ public class Jardim extends Local {
     public int getLotacao() {return -1;}
     
     @Override
-    public boolean isAreaDesportiva() {return false;}
-    
-    @Override
     public boolean isBar() {return false;}
-    
-    @Override
-    public boolean isExposicao() {return false;}
-    
-    @Override
-    public boolean isJardim() {return true;}
     
     @Override
     public String toString() {

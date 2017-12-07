@@ -30,13 +30,7 @@ public abstract class Local implements Serializable {
     
     public abstract int getLotacao();
     
-    public abstract boolean isAreaDesportiva();
-    
     public abstract boolean isBar();
-    
-    public abstract boolean isExposicao();
-    
-    public abstract boolean isJardim();
 
     @Override
     public String toString() {

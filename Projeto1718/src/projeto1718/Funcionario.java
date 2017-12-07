@@ -31,12 +31,6 @@ public class Funcionario extends Pessoa {
     public boolean isEstudante() {return false;}
     
     @Override
-    public boolean isFuncionario() {return true;}
-    
-    @Override
-    public boolean isProfessor() {return false;}
-    
-    @Override
     public String toString() {
         return super.toString() + "\nRegime: " + regime;
     }

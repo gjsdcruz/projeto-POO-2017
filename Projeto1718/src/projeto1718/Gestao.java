@@ -189,8 +189,8 @@ public class Gestao {
         while(login(this.listaPessoas, j) == false) {}
         
         if(verificaInscricao(this.convivioPOO, this.listaPessoas.get(j[0])) == false){
-            inscricaoConvivio(this.convivioPOO, this.listaPessoas, this.listaPessoas.get(j[0]));
-            System.out.println("Foi inscrito com sucesso no convívio");
+            if(inscricaoConvivio(this.convivioPOO, this.listaPessoas, this.listaPessoas.get(j[0])))
+                System.out.println("Foi inscrito com sucesso no convívio");
             apresentacaoLocais(this.convivioPOO);
         }
         
@@ -294,27 +294,15 @@ public class Gestao {
         return false;
     }
     
-    public void inscricaoConvivio(Convivio c, ArrayList<Pessoa> pessoas, Pessoa p) throws IOException {
+    public boolean inscricaoConvivio(Convivio c, ArrayList<Pessoa> pessoas, Pessoa p) throws IOException {
         for(int i=0; i<pessoas.size(); i++){
             if(p.getNome().equalsIgnoreCase(pessoas.get(i).getNome())){
-                if(pessoas.get(i).isEstudante()){
-                    Estudante e = (Estudante) pessoas.get(i);
-                    c.getListaInscritos().add(e);
-                    break;
-                }
-                else if(pessoas.get(i).isFuncionario()){
-                    Funcionario f = (Funcionario) pessoas.get(i);
-                    c.getListaInscritos().add(f);
-                    break;
-                }
-                else if(pessoas.get(i).isProfessor()){
-                    Professor pr = (Professor) pessoas.get(i);
-                    c.getListaInscritos().add(pr);
-                    break;
-                }
+                c.getListaInscritos().add(pessoas.get(i));
+                escreveConvivio(c);
+                return true;
             }
         }
-        escreveConvivio(c);
+        return false;
     }
     
     public void apresentacaoLocais(Convivio c) {
@@ -371,6 +359,22 @@ public class Gestao {
         
         for(Pessoa pe : pessoas){
             if(pe.getNome().equalsIgnoreCase(p.getNome())){
+                if(c.getListaLocaisAVisitar().get(i).isBar()){
+                    if(c.getMapaInscritos().get(i) < c.getListaLocaisAVisitar().get(i).getLotacao()){
+                        pe.getListaLocaisSelecionados().add(c.getListaLocaisAVisitar().get(i));
+                        c.getMapaInscritos().put(i, c.getMapaInscritos().get(i)+1);
+                        return true;
+                    }
+                    else{
+                        System.out.println("Erro! Lotação esgotada neste local.");
+                        return false;
+                    }
+                }
+                
+                pe.getListaLocaisSelecionados().add(c.getListaLocaisAVisitar().get(i));
+                c.getMapaInscritos().put(i, c.getMapaInscritos().get(i)+1);
+                return true;
+                /*
                 if(c.getListaLocaisAVisitar().get(i).isAreaDesportiva()){
                     AreaDesportiva a = (AreaDesportiva) c.getListaLocaisAVisitar().get(i);
                     pe.getListaLocaisSelecionados().add(a);
@@ -402,6 +406,7 @@ public class Gestao {
                     return true;
                 }
                 else {return false;}
+                */
             }
         }
         return false;

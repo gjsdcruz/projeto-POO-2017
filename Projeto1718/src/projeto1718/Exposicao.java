@@ -41,16 +41,7 @@ public class Exposicao extends Local {
     public int getLotacao() {return -1;}
     
     @Override
-    public boolean isAreaDesportiva() {return false;}
-    
-    @Override
     public boolean isBar() {return false;}
-    
-    @Override
-    public boolean isExposicao() {return true;}
-    
-    @Override
-    public boolean isJardim() {return false;}
     
     @Override
     public String toString() {
