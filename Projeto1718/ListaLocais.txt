@@ -1,50 +1,50 @@
 Area desportiva
-40.2
-8.4
+40.1
+8.1
 Basquetebol,Futebol,Corrida
 
 Area desportiva
 40.2
-8.4
+8.2
 Tenis,Voleibol
 
 Jardim
-40.2
-8.4
+40.3
+8.3
 400000
 
 Jardim
-40.2
+40.4
 8.4
 250000
 
 Exposicao
-40.2
-8.4
+40.5
+8.5
 Pintura
 6.8
 Exposicao
-40.2
-8.4
+40.6
+8.6
 Escultura
 5.5
 Exposicao
-40.2
-8.4
+40.7
+8.7
 Pintura
 4.2
 Bar
-40.2
-8.4
-50
+40.8
+8.8
+8
 1
 Bar
-40.2
-8.4
-100
+40.9
+8.9
+8
 2.5
 Bar
-40.2
-8.4
-200
+40.0
+8.0
+8
 5

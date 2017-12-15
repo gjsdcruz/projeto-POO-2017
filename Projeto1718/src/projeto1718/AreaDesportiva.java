@@ -30,10 +30,19 @@ public class AreaDesportiva extends Local {
     }
     
     @Override
+    public String isType() {return "AreaDesportiva";}
+    
+    @Override
     public int getLotacao() {return -1;}
     
     @Override
-    public boolean isBar() {return false;}
+    public double getConsumoMinimo() {return -1;}
+    
+    @Override
+    public double getCustoIngresso() {return -1;}
+    
+    @Override
+    public Guestlist getGuestlist() {return null;}
     
     @Override
     public String toString() {

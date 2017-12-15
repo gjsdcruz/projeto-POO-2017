@@ -2,49 +2,49 @@ Ana Sousa
 Estudante
 Engenharia Informatica
 Cultural
-password1
+pass1
 Tiago Gomes
 Estudante
 Engenharia Informatica
 Boemio
-password2
+pass2
 Diogo Ferreira
 Estudante
 Engenharia Informatica
 Desportivo
-password3
+pass3
 Sara Tavares
 Estudante
 Engenharia Informatica
 Poupadinho
-password4
+pass4
 Rui Cabral
 Estudante
 Engenharia Informatica
 Boemio
-password5
+pass5
 Susana Martins
 Professor
 Catedratico
 Cultural
-password6
+pass6
 Carlos Silva
 Professor
 Associado
 Desportivo
-password7
+pass7
 Pedro Simoes
 Professor
 Auxiliar
 Boemio
-password8
+pass8
 Beatriz Rodrigues
 Funcionario
 Tempo integral
 Poupadinho
-password9
+pass9
 Laura Goncalves
 Funcionario
 Tempo parcial
 Cultural
-password10
+pass10

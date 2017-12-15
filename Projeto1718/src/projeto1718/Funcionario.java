@@ -28,7 +28,13 @@ public class Funcionario extends Pessoa {
     }
 
     @Override
-    public boolean isEstudante() {return false;}
+    public String isType() {return "Funcionario";}
+    
+    @Override
+    public boolean isDesconto() {return false;}
+    
+    @Override
+    public String getCurso() {return "";}
     
     @Override
     public String toString() {

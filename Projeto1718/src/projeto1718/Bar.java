@@ -12,6 +12,7 @@ package projeto1718;
 public class Bar extends Local {
     private int lotacao;
     private double consumoMinimo;
+    private Guestlist guestlist;
     
     public Bar() {}
 
@@ -19,6 +20,8 @@ public class Bar extends Local {
         super(coordenadas);
         this.lotacao = lotacao;
         this.consumoMinimo = consumoMinimo;
+        // Definimos que o nº máximo de convidados da guestlist corresponde a 50% da lotação do bar
+        this.guestlist = new Guestlist(this.lotacao / 2);
     }
 
     @Override
@@ -37,9 +40,20 @@ public class Bar extends Local {
     public void setConsumoMinimo(double consumoMinimo) {
         this.consumoMinimo = consumoMinimo;
     }
+
+    public Guestlist getGuestlist() {
+        return guestlist;
+    }
+
+    public void setGuestlist(Guestlist guestlist) {
+        this.guestlist = guestlist;
+    }
     
     @Override
-    public boolean isBar() {return true;}
+    public String isType() {return "Bar";}
+    
+    @Override
+    public double getCustoIngresso() {return -1;}
 
     @Override
     public String toString() {

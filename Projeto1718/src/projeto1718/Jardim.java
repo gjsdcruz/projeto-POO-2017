@@ -26,12 +26,21 @@ public class Jardim extends Local {
     public void setArea(double area) {
         this.area = area;
     }
-
+    
+    @Override
+    public String isType() {return "Jardim";}
+    
     @Override
     public int getLotacao() {return -1;}
     
     @Override
-    public boolean isBar() {return false;}
+    public double getConsumoMinimo() {return -1;}
+    
+    @Override
+    public double getCustoIngresso() {return -1;}
+    
+    @Override
+    public Guestlist getGuestlist() {return null;}
     
     @Override
     public String toString() {

@@ -16,7 +16,6 @@ public class Estudante extends Pessoa {
 
     public Estudante(String nome, String perfil, String password, String curso) {
         super(nome, perfil, password);
-        super.setDesconto(true);
         this.curso = curso;
     }
 
@@ -29,7 +28,10 @@ public class Estudante extends Pessoa {
     }
 
     @Override
-    public boolean isEstudante() {return true;}
+    public String isType() {return "Estudante";}
+    
+    @Override
+    public boolean isDesconto() {return true;}
     
     @Override
     public String toString() {

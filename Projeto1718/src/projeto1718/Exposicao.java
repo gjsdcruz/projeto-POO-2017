@@ -36,15 +36,22 @@ public class Exposicao extends Local {
     public void setCustoIngresso(double custoIngresso) {
         this.custoIngresso = custoIngresso;
     }
-
+    
+    @Override
+    public String isType() {return "Exposicao";}
+    
     @Override
     public int getLotacao() {return -1;}
     
     @Override
-    public boolean isBar() {return false;}
+    public double getConsumoMinimo() {return -1;}
+    
+    @Override
+    public Guestlist getGuestlist() {return null;}
     
     @Override
     public String toString() {
-        return super.toString() + "\nExposição {Forma artística: " + formaArtistica + ", Custo de ingresso: " + custoIngresso + "€}";
+        return super.toString() + "\nExposição {Forma artística: " + formaArtistica +
+                ", Custo de ingresso: " + custoIngresso + "€}";
     }
 }

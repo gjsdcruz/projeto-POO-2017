@@ -55,15 +55,15 @@ public class Data implements Serializable {
     }
     
     public boolean verificaDataParametros(Data d) {
-        if(this.ano >= 2017){
-            if(this.mes == 1 || this.mes == 3 || this.mes == 5 || this.mes == 7 || this.mes == 8 || this.mes == 10 || this.mes == 12){
-                return this.dia >= 1 && this.dia <=31;
+        if(this.ano >= 2017) {
+            if(this.mes == 1 || this.mes == 3 || this.mes == 5 || this.mes == 7 || this.mes == 8 || this.mes == 10 || this.mes == 12) {
+                return this.dia >= 1 && this.dia <= 31;
             }
-            else if(this.mes == 4 || this.mes == 6 || this.mes == 9 || this.mes == 11){
-                return this.dia >= 1 && this.dia <=30;
+            else if(this.mes == 4 || this.mes == 6 || this.mes == 9 || this.mes == 11) {
+                return this.dia >= 1 && this.dia <= 30;
             }
-            else if(this.mes == 2){
-                return this.dia >= 1 && this.dia <=28;
+            else if(this.mes == 2) {
+                return this.dia >= 1 && this.dia <= 28;
             }
             else return false;
         }
@@ -78,11 +78,11 @@ public class Data implements Serializable {
         int anoAtual = atual.get(Calendar.YEAR);
         
         if(d.getAno() < anoAtual) return false;
-        else{
-            if(d.getAno() == anoAtual){
+        else {
+            if(d.getAno() == anoAtual) {
                 if(d.getMes() < mesAtual) return false;
                 else{
-                    if(d.getMes() == mesAtual){
+                    if(d.getMes() == mesAtual) {
                         return d.getDia() >= diaAtual;
                     }
                     else return true;

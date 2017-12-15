@@ -40,6 +40,6 @@ public class GPS implements Serializable {
 
     @Override
     public String toString() {
-        return latitude + " : " + longitude;
+        return latitude + "º, " + longitude + 'º';
     }
 }

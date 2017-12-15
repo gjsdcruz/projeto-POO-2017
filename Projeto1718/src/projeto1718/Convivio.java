@@ -7,7 +7,7 @@ package projeto1718;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 
 /**
  *
@@ -18,7 +18,6 @@ public class Convivio implements Serializable {
     protected ArrayList<Local> listaLocaisAVisitar;
     protected double receitaPrevista;
     protected Data data;
-    protected HashMap<Integer,Integer> mapaInscritos;
     
     public Convivio() {}
 
@@ -27,11 +26,6 @@ public class Convivio implements Serializable {
         this.listaLocaisAVisitar = listaLocaisAVisitar;
         this.receitaPrevista = 0;
         this.data = data;
-        this.mapaInscritos = new HashMap<>(this.listaLocaisAVisitar.size());
-        
-        for(int i=0; i<this.listaLocaisAVisitar.size(); i++){
-            mapaInscritos.put(i, 0);
-        }
     }
 
     public ArrayList<Pessoa> getListaInscritos() {
@@ -65,19 +59,80 @@ public class Convivio implements Serializable {
     public void setData(Data data) {
         this.data = data;
     }
-
-    public HashMap<Integer, Integer> getMapaInscritos() {
-        return mapaInscritos;
-    }
-
-    public void setMapaInscritos(HashMap<Integer, Integer> mapaInscritos) {
-        this.mapaInscritos = mapaInscritos;
-    }
-
+    
     @Override
     public String toString() {
         return "Convívio {\nLista de pessoas inscritas:\n" + listaInscritos + 
                 "\nLista de locais a visitar:\n" + listaLocaisAVisitar + "\nReceita prevista: " +
                 receitaPrevista + "€\nData: " + data + "\n}";
+    }
+    
+    public boolean verificaInscricao(Pessoa pessoa) {
+        if(this.getListaInscritos().isEmpty())
+            return false;
+        
+        for(Pessoa inscrito : this.getListaInscritos()) {
+            if(inscrito.getNome().equalsIgnoreCase(pessoa.getNome())) {
+                System.out.println("Já se encontra inscrito no convívio.");
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void inscrevePessoa(Pessoa pessoa) {
+        this.getListaInscritos().add(pessoa);
+    }
+    
+    public void apresentaLocaisAVisitar() {
+        int i = 1;
+        System.out.println("\n============ LOCAIS A VISITAR ============");
+        for(Local local : this.getListaLocaisAVisitar()) {
+            System.out.println(i + " - " + local);
+            System.out.println("Inscritos: " + local.getNumInscritos() + "\n");
+            i++;
+        }
+    }
+    
+    public void seriacaoLocaisAVisitar() {
+        ArrayList<Local> listaOrdenada = (ArrayList<Local>) this.getListaLocaisAVisitar().clone();
+        Collections.sort(listaOrdenada);
+        
+        System.out.println("\n============ LOCAIS A VISITAR ============");
+        for(Local local : listaOrdenada) {
+            System.out.println(local);
+            System.out.println("Inscritos: " + local.getNumInscritos() + "\n");
+        }
+    }
+    
+    public void visualizaGuestlists() {
+        for(Local local : this.getListaLocaisAVisitar()) {
+            if(local.isType().equalsIgnoreCase("Bar")) {
+                System.out.println("");
+                System.out.println(local);
+                local.getGuestlist().listaConvidados();
+            }
+        }
+    }
+    
+    public void calculaReceita() {
+        double receita = 0;
+        double mod = 1;
+        
+        for (Pessoa pessoa : this.getListaInscritos()) {
+            for (Local local : pessoa.getListaLocaisSelecionados()) {
+                if(local.isType().equalsIgnoreCase("Bar")) {
+                    receita += local.getConsumoMinimo();
+                }
+                else if(local.isType().equalsIgnoreCase("Exposicao")) {
+                    if(pessoa.isDesconto()) 
+                        mod = 0.9;
+                    else
+                        mod = 1;
+                    receita += (local.getCustoIngresso() * mod);
+                }
+            }
+        }
+        this.setReceitaPrevista(receita);
     }
 }

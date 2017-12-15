@@ -5,13 +5,14 @@
  */
 package projeto1718;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Bruna
  */
-public class Guestlist {
+public class Guestlist implements Serializable {
     private ArrayList<Pessoa> listaConvidados;
     private int numConvidados;
     
@@ -39,17 +40,35 @@ public class Guestlist {
     }
     
     public boolean adicionaConvidado(Pessoa p) {
-        // FALTA
-        return false;
+        if (this.getListaConvidados().size() < this.getNumConvidados()) {
+            this.getListaConvidados().add(p);
+            return true;
+        }
+        else {
+            System.out.println("Erro! Guestlist cheia.");
+            return false;
+        }
     }
     
     public boolean removeConvidado(Pessoa p) {
-        // FALTA
-        return false;
+        if(this.getListaConvidados().remove(p)) {
+            return true;
+        } 
+        else return false;
     }
     
-    public boolean verificaPerfil(Pessoa p) {
-        // FALTA
-        return false;
+    public void listaConvidados() {
+        System.out.println("=============== GUESTLIST ===============");
+        for(Pessoa convidado : this.getListaConvidados()) {
+            if(convidado.isType().equalsIgnoreCase("Estudante")) {
+                System.out.println("Nome: " + convidado.getNome());
+                System.out.println("Perfil: " + convidado.getPerfil());
+                System.out.println("Curso: " + convidado.getCurso() + '\n');
+            }
+            else {
+                System.out.println("Nome: " + convidado.getNome());
+                System.out.println("Perfil: " + convidado.getPerfil() + '\n');
+            }
+        }
     }
 }

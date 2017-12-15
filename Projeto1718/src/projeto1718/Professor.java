@@ -28,7 +28,13 @@ public class Professor extends Pessoa {
     }
 
     @Override
-    public boolean isEstudante() {return false;}
+    public String isType() {return "Professor";}
+    
+    @Override
+    public boolean isDesconto() {return false;}
+    
+    @Override
+    public String getCurso() {return "";}
     
     @Override
     public String toString() {
