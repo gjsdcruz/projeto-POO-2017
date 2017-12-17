@@ -8,8 +8,8 @@ package projeto1718;
 import java.io.IOException;
 
 /**
+ * Nesta classe é inicializada a classe Gestao.
  *
- * @author Bruna
  */
 public class Projeto1718 {
 

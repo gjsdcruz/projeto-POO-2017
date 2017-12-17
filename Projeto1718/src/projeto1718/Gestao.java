@@ -12,8 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Bruna
+ * Classe que gere todos os dados armazenados ao longo do programa e as operações que sobre eles ocorrem.
+ * 
  */
 public class Gestao {
     protected ArrayList<Local> listaLocais;
@@ -21,18 +21,22 @@ public class Gestao {
     protected Convivio convivioPOO;
     protected int userID;
     
+    /**
+    * Construtor por omissão da classe Gestao. Quando inicializada, esta classe carrega todas as informações armazenadas de execuções anteriores do programa. 
+    * 
+    */
     public Gestao() throws IOException {
-         /* 
+        // /* 
         listaLocais = carregaLocaisTxt();
         listaPessoas = carregaPessoasTxt();
         convivioPOO = new Convivio(this.listaLocais, new Data(22,12,2017));
-         */
+        // */
         
-        // /*
+         /*
         listaLocais = carregaLocais();
         listaPessoas = carregaPessoas();
         convivioPOO = carregaConvivio();
-        // */
+         */
         
         userID = -1;
         escreveFicheiros();
@@ -220,7 +224,7 @@ public class Gestao {
         return this.convivioPOO.seriacaoLocaisAVisitar();
     }
     
-    public String chamaVisualizacaoGuestlist() {
+    public String chamaVisualizacaoGuestlists() {
         return this.convivioPOO.visualizaGuestlists();
     }
     
@@ -228,11 +232,6 @@ public class Gestao {
         this.convivioPOO.calculaReceita();
         double receita = this.convivioPOO.getReceitaPrevista();
         return "Receita mínima prevista: " + String.valueOf(new DecimalFormat("#.##").format(receita)) + "€\n";
-    }
-
-    public void chamaSair() throws IOException {
-        escreveFicheiros();
-        System.exit(0);
     }
     
     public String login(ArrayList<Pessoa> pessoas, String nome, String password) {

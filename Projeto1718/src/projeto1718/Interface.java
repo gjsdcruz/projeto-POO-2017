@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- *
- * @author Bruna
+ * Interface do programa.
+ * 
  */
 public class Interface extends javax.swing.JFrame {
     Gestao programa;
@@ -245,7 +245,7 @@ public class Interface extends javax.swing.JFrame {
             input3.setVisible(false);
             botao2.setVisible(false);
             output.setText("");
-            String resultado = programa.chamaVisualizacaoGuestlist();
+            String resultado = programa.chamaVisualizacaoGuestlists();
             output.setText(resultado);
         }
         else if(String.valueOf(op).equals("4")) {
