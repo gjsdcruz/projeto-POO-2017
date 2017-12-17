@@ -74,18 +74,19 @@ public abstract class Pessoa implements Serializable {
     
     public boolean verificaSelecao() {
         if(this.getListaLocaisSelecionados().size() == 5) {
-            System.out.println("Erro! Já selecionou 5 locais.");
             return true;
         }
         return false;
     }
     
-    public boolean adicionaLocal(Convivio convivio, int i) {
+    public String adicionaLocal(Convivio convivio, int i) {
+        String s = "";
+        
         if(!this.getListaLocaisSelecionados().isEmpty()) {
             for(Local local : this.getListaLocaisSelecionados()) {
                 if(local.equals(convivio.getListaLocaisAVisitar().get(i))) {
-                    System.out.println("Erro! Já selecionou este local.");
-                    return false;
+                    s = s.concat("Erro4"); // Erro 4: Já selecionou este local
+                    return s;
                 }
             }
         }
@@ -103,26 +104,28 @@ public abstract class Pessoa implements Serializable {
                         for(Pessoa convidado : convivio.getListaLocaisAVisitar().get(i).getGuestlist().getListaConvidados()) {
                             if(!convidado.verificaPerfilBoemio()) {
                                 if(convivio.getListaLocaisAVisitar().get(i).getGuestlist().removeConvidado(convidado))
-                                    System.out.println("Removeu " + convidado.getNome() + " da guestlist do bar.");
+                                    s = s.concat("Removeu-se " + convidado.getNome() + " da guestlist do bar.\n");
                                 if(convivio.getListaLocaisAVisitar().get(i).getGuestlist().adicionaConvidado(this))
-                                    System.out.println("Adicionou " + this.getNome() + " à guestlist do bar.");
+                                    s = s.concat("Adicionou-se " + this.getNome() + " à guestlist do bar.\n");
                                 break;
                             }
                         }
                     }
                 }
                 
-                return true;
+                s = s.concat("Local adicionado com sucesso\n");
+                return s;
             }
             else{
-                System.out.println("Erro! Lotação esgotada neste local.");
-                return false;
+                s = s.concat("Erro5"); // Erro 5 : Lotação esgotada neste bar
+                return s;
             }
         }
-
+        
         this.getListaLocaisSelecionados().add(convivio.getListaLocaisAVisitar().get(i));
         convivio.getListaLocaisAVisitar().get(i).setNumInscritos(numInscritos+1);
-        return true;
+        s = s.concat("Local adicionado com sucesso\n");
+        return s;
     }
     
     public boolean verificaPerfilBoemio() {

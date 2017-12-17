@@ -46,6 +46,6 @@ public class AreaDesportiva extends Local {
     
     @Override
     public String toString() {
-        return super.toString() + "\nÁrea Desportiva {Desportos: " + desportos.toString() + '}';
+        return super.toString() + "\nÁrea Desportiva\nDesportos: " + desportos.toString();
     }
 }

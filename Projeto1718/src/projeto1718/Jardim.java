@@ -44,6 +44,6 @@ public class Jardim extends Local {
     
     @Override
     public String toString() {
-        return super.toString() + "\nJardim {Área: " + area + " m^2}";
+        return super.toString() + "\nJardim\nÁrea: " + area + " m^2";
     }
 }

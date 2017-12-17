@@ -45,7 +45,6 @@ public class Guestlist implements Serializable {
             return true;
         }
         else {
-            System.out.println("Erro! Guestlist cheia.");
             return false;
         }
     }
@@ -57,18 +56,25 @@ public class Guestlist implements Serializable {
         else return false;
     }
     
-    public void listaConvidados() {
-        System.out.println("=============== GUESTLIST ===============");
+    public String listaConvidados() {
+        String s = "=============== GUESTLIST ===============\n";
+        
+        if(this.getListaConvidados().isEmpty()) {
+            s = s.concat("Guestlist vazia\n");
+            return s;
+        }
+        
         for(Pessoa convidado : this.getListaConvidados()) {
             if(convidado.isType().equalsIgnoreCase("Estudante")) {
-                System.out.println("Nome: " + convidado.getNome());
-                System.out.println("Perfil: " + convidado.getPerfil());
-                System.out.println("Curso: " + convidado.getCurso() + '\n');
+                s = s.concat("Nome: " + convidado.getNome() + "\n");
+                s = s.concat("Perfil: " + convidado.getPerfil() + "\n");
+                s = s.concat("Curso: " + convidado.getCurso() + "\n\n");
             }
             else {
-                System.out.println("Nome: " + convidado.getNome());
-                System.out.println("Perfil: " + convidado.getPerfil() + '\n');
+                s = s.concat("Nome: " + convidado.getNome() + "\n");
+                s = s.concat("Perfil: " + convidado.getPerfil() + "\n\n");
             }
         }
+        return s;
     }
 }

@@ -5,16 +5,22 @@
  */
 package projeto1718;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+
 /**
  *
  * @author Bruna
  */
 public class Interface extends javax.swing.JFrame {
-
+    Gestao programa;
     /**
      * Creates new form Interface
      */
-    public Interface() {
+    public Interface() throws IOException {
+        programa = new Gestao();
         initComponents();
     }
 
@@ -27,64 +33,276 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        painel = new javax.swing.JPanel();
+        titulo = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        input1 = new javax.swing.JTextField();
+        label2 = new javax.swing.JLabel();
+        botao1 = new javax.swing.JButton();
+        scrollPanel = new javax.swing.JScrollPane();
+        output = new javax.swing.JTextArea();
+        input2 = new javax.swing.JPasswordField();
+        comboBox = new javax.swing.JComboBox<>();
+        comboBox.setVisible(false);
+        label3 = new javax.swing.JLabel();
+        input3 = new javax.swing.JTextField();
+        botao2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Serão Convívio de POO");
-        setLocation(new java.awt.Point(500, 250));
+        setLocation(new java.awt.Point(600, 200));
+        setPreferredSize(new java.awt.Dimension(780, 600));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(545, 420));
+        titulo.setFont(new java.awt.Font("Franklin Gothic Book", 0, 24)); // NOI18N
+        titulo.setText("LOGIN");
 
-        jComboBox1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1. Inscrição no convívio", "2. Apresentação dos locais a visitar", "3. Seleção dos locais a visitar", "4. Seriação dos locais a visitar", "5. Visualização das \"guestlist\"", "6. Contabilização das receitas dos locais visitados", "7. Sair" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(280, 30));
+        label1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        label1.setText("Username");
+        label1.setAlignmentY(0.0F);
 
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
-        jLabel1.setText("Seleccione a opção desejada:");
-        jLabel1.setPreferredSize(new java.awt.Dimension(206, 30));
+        input1.setMinimumSize(new java.awt.Dimension(6, 212));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, 0, 379, Short.MAX_VALUE)
+        label2.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        label2.setText("Password");
+
+        botao1.setFont(new java.awt.Font("Franklin Gothic Book", 0, 18)); // NOI18N
+        botao1.setText("Entrar");
+        botao1.setPreferredSize(new java.awt.Dimension(80, 30));
+        botao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao1ActionPerformed(evt);
+            }
+        });
+
+        output.setEditable(false);
+        output.setColumns(20);
+        output.setRows(5);
+        scrollPanel.setViewportView(output);
+
+        input2.setMinimumSize(new java.awt.Dimension(6, 212));
+        input2.setName(""); // NOI18N
+
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a opção desejada", "1 - Seleção dos locais a visitar", "2 - Seriação dos locais a visitar", "3 - Visualização das guestlists", "4 - Contabilização das receitas dos locais visitados", "5 - Logout" }));
+        comboBox.setPreferredSize(new java.awt.Dimension(360, 30));
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
+
+        label3.setText("Nº do local");
+        label3.setVisible(false);
+
+        input3.setVisible(false);
+
+        botao2.setText("Selecionar");
+        botao2.setVisible(false);
+        botao2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
+        painel.setLayout(painelLayout);
+        painelLayout.setHorizontalGroup(
+            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLayout.createSequentialGroup()
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(painelLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painelLayout.createSequentialGroup()
+                                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(label2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(painelLayout.createSequentialGroup()
+                                                .addGap(28, 28, 28)
+                                                .addComponent(input2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLayout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(painelLayout.createSequentialGroup()
+                                        .addGap(5, 5, 5)
+                                        .addComponent(label3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(input3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(botao2))))))
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(botao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        painelLayout.setVerticalGroup(
+            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label1)
+                    .addComponent(input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label2))
+                .addGap(18, 18, 18)
+                .addComponent(botao1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label3)
+                    .addComponent(input3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botao2))
+                .addContainerGap(300, Short.MAX_VALUE))
+            .addGroup(painelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(427, Short.MAX_VALUE))
+                .addComponent(scrollPanel)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(painel, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(painel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao1ActionPerformed
+        // TODO add your handling code here:
+        String username = input1.getText();
+        String password = input2.getText();
+        if(username.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            String resultado = programa.chamaLogin(username, password);
+            if(resultado.equalsIgnoreCase("Erro1")) {
+                JOptionPane.showMessageDialog(rootPane, "Não existe ninguém registado com esse nome", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(resultado.equalsIgnoreCase("Erro2")) {
+                JOptionPane.showMessageDialog(rootPane, "Password errada", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                output.setText(resultado);
+                titulo.setText("MENU");
+                label1.setVisible(false);
+                label2.setVisible(false);
+                input1.setVisible(false);
+                input2.setVisible(false);
+                botao1.setVisible(false);
+                comboBox.setLocation(comboBox.getX()+50, comboBox.getY()-200);
+                comboBox.setSelectedIndex(0);
+                comboBox.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_botao1ActionPerformed
+
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        // TODO add your handling code here:
+        JComboBox jc = (JComboBox)evt.getSource();
+        String opcao = (String)jc.getSelectedItem();
+        char op = opcao.charAt(0);
+        
+        if(String.valueOf(op).equals("1")) {
+            input3.setText("");
+            label3.setVisible(true);
+            input3.setVisible(true);
+            botao2.setVisible(true);
+            output.setText("");
+            String resultado = programa.chamaApresentacaoLocais();
+            output.setText(resultado);
+        }
+        else if(String.valueOf(op).equals("2")) {
+            input3.setText("");
+            label3.setVisible(false);
+            input3.setVisible(false);
+            botao2.setVisible(false);
+            output.setText("");
+            String resultado = programa.chamaSeriacaoLocais();
+            output.setText(resultado);
+        }
+        else if(String.valueOf(op).equals("3")) {
+            input3.setText("");
+            label3.setVisible(false);
+            input3.setVisible(false);
+            botao2.setVisible(false);
+            output.setText("");
+            String resultado = programa.chamaVisualizacaoGuestlist();
+            output.setText(resultado);
+        }
+        else if(String.valueOf(op).equals("4")) {
+            input3.setText("");
+            label3.setVisible(false);
+            input3.setVisible(false);
+            botao2.setVisible(false);
+            output.setText("");
+            String resultado = programa.chamaContabilizacaoReceitas();
+            output.setText(resultado);
+        }
+        else if(String.valueOf(op).equals("5")) {
+            input3.setText("");
+            label3.setVisible(false);
+            input3.setVisible(false);
+            botao2.setVisible(false);
+            comboBox.setVisible(false);
+            output.setText("");
+            input1.setText("");
+            input2.setText("");
+            titulo.setText("LOGIN");
+            label1.setVisible(true);
+            label2.setVisible(true);
+            input1.setVisible(true);
+            input2.setVisible(true);
+            botao1.setVisible(true);
+        }
+    }//GEN-LAST:event_comboBoxActionPerformed
+
+    private void botao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao2ActionPerformed
+        // TODO add your handling code here:
+        String opcao = input3.getText();
+        if(opcao.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o campo pedido", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            String resultado = programa.chamaSelecaoLocais(opcao);
+            if(resultado.equalsIgnoreCase("Erro1")) {
+                JOptionPane.showMessageDialog(rootPane, "Já selecionou 5 locais", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(resultado.equalsIgnoreCase("Erro2")) {
+                JOptionPane.showMessageDialog(rootPane, "Deve introduzir um inteiro", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(resultado.equalsIgnoreCase("Erro3")) {
+                JOptionPane.showMessageDialog(rootPane, "Opção inválida", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(resultado.equalsIgnoreCase("Erro4")) {
+                JOptionPane.showMessageDialog(rootPane, "Já selecionou este local", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(resultado.equalsIgnoreCase("Erro5")) {
+                JOptionPane.showMessageDialog(rootPane, "Lotação esgotada neste bar", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                output.setText(output.getText() + resultado);
+            }
+        }
+    }//GEN-LAST:event_botao2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,14 +334,28 @@ public class Interface extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interface().setVisible(true);
+                try {
+                    new Interface().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton botao1;
+    private javax.swing.JButton botao2;
+    private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JTextField input1;
+    private javax.swing.JPasswordField input2;
+    private javax.swing.JTextField input3;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JTextArea output;
+    private javax.swing.JPanel painel;
+    private javax.swing.JScrollPane scrollPanel;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

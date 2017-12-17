@@ -56,7 +56,6 @@ public abstract class Local implements Serializable, Comparable {
     @Override
     public int compareTo(Object o) {
         int localNumInscritos = ((Local)o).getNumInscritos();
-
         return localNumInscritos - this.getNumInscritos();
     }
 }

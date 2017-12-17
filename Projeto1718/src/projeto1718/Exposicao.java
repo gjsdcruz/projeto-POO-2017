@@ -51,7 +51,7 @@ public class Exposicao extends Local {
     
     @Override
     public String toString() {
-        return super.toString() + "\nExposição {Forma artística: " + formaArtistica +
-                ", Custo de ingresso: " + custoIngresso + "€}";
+        return super.toString() + "\nExposição\nForma artística: " + formaArtistica +
+                "\nCusto de ingresso: " + custoIngresso + "€";
     }
 }

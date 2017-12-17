@@ -6,7 +6,10 @@
 package projeto1718;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,22 +19,31 @@ public class Gestao {
     protected ArrayList<Local> listaLocais;
     protected ArrayList<Pessoa> listaPessoas;
     protected Convivio convivioPOO;
+    protected int userID;
     
     public Gestao() throws IOException {
          /* 
         listaLocais = carregaLocaisTxt();
         listaPessoas = carregaPessoasTxt();
         convivioPOO = new Convivio(this.listaLocais, new Data(22,12,2017));
-        escreveFicheiros();
          */
         
         // /*
         listaLocais = carregaLocais();
         listaPessoas = carregaPessoas();
         convivioPOO = carregaConvivio();
-        //escreveFicheiros();
-        menu(this.listaLocais, this.listaPessoas, this.convivioPOO);
         // */
+        
+        userID = -1;
+        escreveFicheiros();
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     
     public ArrayList<Local> carregaLocaisTxt() throws IOException {
@@ -192,80 +204,30 @@ public class Gestao {
         escreveConvivio(this.convivioPOO);
     }
     
-    public void menu(ArrayList<Local> locais, ArrayList<Pessoa> pessoas, Convivio convivio) throws IOException {
-        int [] numPessoa = new int[1];
-        while(login(pessoas, numPessoa) == false) {}
-        int i = numPessoa[0];
-        
-        System.out.println("Bem vindo(a) " + pessoas.get(i).getNome());
-        if(convivio.verificaInscricao(pessoas.get(i)) == false) {
-            convivio.inscrevePessoa(pessoas.get(i));
-            System.out.println("Foi inscrito(a) com sucesso no convívio.");
-            convivio.apresentaLocaisAVisitar();
-        }
-        
-        int op = 0;
-        while(op != 6) {
-            op = 0;
-            
-            System.out.println("========================== MENU ==========================");
-            System.out.println("1 - Seleção dos locais a visitar");
-            System.out.println("2 - Seriação dos locais a visitar");
-            System.out.println("3 - Visualização das 'guestlist'");
-            System.out.println("4 - Contabilização das receitas dos locais visitados");
-            System.out.println("5 - Logout");
-            System.out.println("6 - Sair");
-            
-            while(op < 1 || op > 6) {
-                System.out.print("Introduza a opção desejada: ");
-                Scanner sc = new Scanner(System.in);
-                try {
-                    op = sc.nextInt();
-                }
-                catch(InputMismatchException e) {
-                    op = 0;
-                    System.out.println("Erro! Deve introduzir um inteiro de 1 a 6 de acordo com a opção desejada.");
-                }
-                if(op < 1 || op > 6)
-                    System.out.println("Erro! Deve introduzir um inteiro de 1 a 6 de acordo com a opção desejada.");
-            }
-            
-            switch(op) {
-                case 1:
-                    chamaSelecaoLocais(convivio, pessoas.get(i)); break;
-                case 2:
-                    chamaSeriacaoLocais(convivio); break;
-                case 3:
-                    chamaVisualizacaoGuestlist(convivio); break;
-                case 4:
-                    chamaContabilizacaoReceitas(convivio); break;
-                case 5:
-                    menu(locais, pessoas, convivio); break;
-                case 6:
-                    chamaSair(); break;
-                default:
-                    break;
-            }
-        }
+    public String chamaLogin(String username, String password) {
+        return login(this.listaPessoas, username, password);
     }
-
-    public void chamaSelecaoLocais(Convivio convivio, Pessoa pessoa) throws IOException {
-        if(pessoa.verificaSelecao() == false) {
-            convivio.apresentaLocaisAVisitar();
-            selecaoLocais(convivio, pessoa);
-        }
+    
+    public String chamaApresentacaoLocais() {
+        return this.convivioPOO.apresentaLocaisAVisitar();
     }
-
-    public void chamaSeriacaoLocais(Convivio convivio) {
-        seriacaoLocais(convivio);
+    
+    public String chamaSelecaoLocais(String numLocal) {
+        return selecaoLocais(this.listaPessoas, this.convivioPOO, numLocal);
     }
-
-    public void chamaVisualizacaoGuestlist(Convivio convivio) {
-        visualizacaoGuestlists(convivio);
+    
+    public String chamaSeriacaoLocais() {
+        return this.convivioPOO.seriacaoLocaisAVisitar();
     }
-
-    public void chamaContabilizacaoReceitas(Convivio convivio) {
-        contabilizacaoReceitas(convivio);
+    
+    public String chamaVisualizacaoGuestlist() {
+        return this.convivioPOO.visualizaGuestlists();
+    }
+    
+    public String chamaContabilizacaoReceitas() {
+        this.convivioPOO.calculaReceita();
+        double receita = this.convivioPOO.getReceitaPrevista();
+        return "Receita mínima prevista: " + String.valueOf(new DecimalFormat("#.##").format(receita)) + "€\n";
     }
 
     public void chamaSair() throws IOException {
@@ -273,61 +235,58 @@ public class Gestao {
         System.exit(0);
     }
     
-    public boolean login(ArrayList<Pessoa> pessoas, int numPessoa[]) {
-        String nome, password;
-        
-        System.out.println("======= LOGIN =======");
-        System.out.print("Nome: ");
-        Scanner sc = new Scanner(System.in);
-        nome = sc.nextLine();
-        System.out.print("Password: ");
-        password = sc.nextLine();
-        
-        for(int i=0; i<pessoas.size(); i++) {
-            if(nome.equalsIgnoreCase(pessoas.get(i).getNome())) {
-                if(password.equalsIgnoreCase(pessoas.get(i).getPassword())) {
-                    numPessoa[0] = i;
-                    return true;
+    public String login(ArrayList<Pessoa> pessoas, String nome, String password) {
+        int i = 0;
+        for(Pessoa user : pessoas) {
+            if(nome.equalsIgnoreCase(user.getNome())) {
+                if(password.equalsIgnoreCase(user.getPassword())) {
+                    this.setUserID(i);
+                    if(this.convivioPOO.verificaInscricao(user))
+                        return "Bem vindo(a) " + user.getNome() + 
+                                "\nJá se encontra inscrito(a) no convívio\n";
+                    else {
+                        this.convivioPOO.inscrevePessoa(user);
+                        try {
+                            escreveConvivio(this.convivioPOO);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Gestao.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        return "Bem vindo(a) " + user.getNome() + 
+                                "\nFoi inscrito(a) com sucesso no convívio\n" +
+                                this.convivioPOO.apresentaLocaisAVisitar();
+                    }
                 }
-                else {
-                    System.out.println("Password errada.");
-                    return false;
-                }
+                return "Erro2"; // Erro 2: Password errada.
             }
+            i++;
         }
-        System.out.println("Não existe ninguém registado com esse nome.");
-        return false;
+        return "Erro1"; // Erro 1: Não existe ninguém registado com esse nome.
     }
-
-    public void selecaoLocais(Convivio convivio, Pessoa pessoa) throws IOException {
-        int op = 0;
-        Scanner sc = new Scanner(System.in);
-
-        while(op < 1 || op > convivio.getListaLocaisAVisitar().size()) {
+    
+    public String selecaoLocais(ArrayList<Pessoa> pessoas, Convivio convivio, String numLocal) {
+        int op;
+        if(pessoas.get(this.getUserID()).verificaSelecao())
+            return "Erro1"; // Erro 1: Já selecionou 5 locais
+        else {
             try {
-                System.out.print("Introduza o nº do local a visitar: ");
-                op = sc.nextInt();
+                op = Integer.parseInt(numLocal);
             }
-            catch(InputMismatchException e) {
-                System.out.println("Opção inválida. Introduza um número inteiro.");
-                op = 0;
+            catch(NumberFormatException e) {
+                return "Erro2";  // Erro 2: Deve introduzir um inteiro
             }
+            if(op < 1 || op > convivio.getListaLocaisAVisitar().size())
+                return "Erro3"; // Erro 3: Opção inválida
+            
+            String s = pessoas.get(this.getUserID()).adicionaLocal(convivio, op-1);
+            if(!s.equalsIgnoreCase("Erro4") && !s.equalsIgnoreCase("Erro5")) {
+                try {
+                    escreveFicheiros();
+                } catch (IOException ex) {
+                    Logger.getLogger(Gestao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            return s;
         }
-
-        if(pessoa.adicionaLocal(convivio, op-1))
-            System.out.println("Local adicionado com sucesso");
-    }
-    
-    public void seriacaoLocais(Convivio convivio) {
-        convivio.seriacaoLocaisAVisitar();
-    }
-    
-    public void visualizacaoGuestlists(Convivio convivio) {
-        convivio.visualizaGuestlists();
-    }
-    
-    public void contabilizacaoReceitas(Convivio convivio) {
-        convivio.calculaReceita();
-        System.out.printf("Receita mínima prevista:  %.2f€\n", convivio.getReceitaPrevista());
     }
 }

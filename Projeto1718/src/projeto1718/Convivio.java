@@ -72,10 +72,8 @@ public class Convivio implements Serializable {
             return false;
         
         for(Pessoa inscrito : this.getListaInscritos()) {
-            if(inscrito.getNome().equalsIgnoreCase(pessoa.getNome())) {
-                System.out.println("Já se encontra inscrito no convívio.");
+            if(inscrito.getNome().equalsIgnoreCase(pessoa.getNome()))
                 return true;
-            }
         }
         return false;
     }
@@ -84,35 +82,39 @@ public class Convivio implements Serializable {
         this.getListaInscritos().add(pessoa);
     }
     
-    public void apresentaLocaisAVisitar() {
+    public String apresentaLocaisAVisitar() {
+        String s = "\n================ LOCAIS A VISITAR ================\n";
         int i = 1;
-        System.out.println("\n============ LOCAIS A VISITAR ============");
         for(Local local : this.getListaLocaisAVisitar()) {
-            System.out.println(i + " - " + local);
-            System.out.println("Inscritos: " + local.getNumInscritos() + "\n");
+            s = s.concat(String.valueOf(i) + " - " + local.toString() + "\n");
+            s = s.concat("Inscritos: " + String.valueOf(local.getNumInscritos()) + "\n\n");
             i++;
         }
+        
+        return s;
     }
     
-    public void seriacaoLocaisAVisitar() {
+    public String seriacaoLocaisAVisitar() {
         ArrayList<Local> listaOrdenada = (ArrayList<Local>) this.getListaLocaisAVisitar().clone();
         Collections.sort(listaOrdenada);
         
-        System.out.println("\n============ LOCAIS A VISITAR ============");
+        String s = "\n================ LOCAIS A VISITAR ================\n";
         for(Local local : listaOrdenada) {
-            System.out.println(local);
-            System.out.println("Inscritos: " + local.getNumInscritos() + "\n");
+            s = s.concat(local.toString() + "\n");
+            s = s.concat("Inscritos: " + String.valueOf(local.getNumInscritos()) + "\n\n");
         }
+        return s;
     }
     
-    public void visualizaGuestlists() {
+    public String visualizaGuestlists() {
+        String s = "\n";
         for(Local local : this.getListaLocaisAVisitar()) {
             if(local.isType().equalsIgnoreCase("Bar")) {
-                System.out.println("");
-                System.out.println(local);
-                local.getGuestlist().listaConvidados();
+                s = s.concat(local.toString() + "\n");
+                s = s.concat(local.getGuestlist().listaConvidados() + "\n");
             }
         }
+        return s;
     }
     
     public void calculaReceita() {
